@@ -1,8 +1,8 @@
+import Dashboard from "./pages/Dashboard";
+
 const App = () => {
   return (
-    <main>
-      <h1>CRM AI Dashboard</h1>
-    </main>
+    <Dashboard />
   );
 };
 
