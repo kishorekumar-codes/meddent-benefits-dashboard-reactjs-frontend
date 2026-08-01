@@ -186,6 +186,79 @@
   color: #94a3b8;
 }
 
+/* ================= Mobile Header (<560px) ================= */
+@media (max-width: 560px) {
+  .dashboard-header {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+
+  .header-brand {
+    gap: 8px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .brand-icon {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .brand-title {
+    font-size: 11px;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Hide subtitle */
+  .brand-subtitle {
+    display: none;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  /* Hide date & time */
+  .info-chip {
+    display: none;
+  }
+
+  .notification-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .notification-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Keep only avatar */
+  .user-info,
+  .dropdown-arrow {
+    display: none;
+  }
+
+  .user-profile {
+    gap: 0;
+  }
+
+  .user-profile .avatar {
+    width: 34px;
+    height: 34px;
+  }
+
+  .notification-btn .badge {
+    width: 14px;
+    height: 14px;
+    font-size: 9px;
+  }
+}
+
 /* =======================================Footer=========================================== */
 
 .dashboard-footer {
@@ -450,6 +523,98 @@
 }
 .workflow-dot.workflow-blue { background-color: #3b82f6; }
 .workflow-dot.workflow-grey { background-color: #cbd5e1; }
+
+/* ================= Workflow Mobile (<550px) ================= */
+@media (max-width: 550px) {
+
+  .workflow-card {
+    padding: 16px;
+    min-height: auto;
+    overflow-x: auto;
+  }
+
+  .workflow-card-title {
+    font-size: 15px;
+  }
+
+  .workflow-card-subtitle {
+    font-size: 11px;
+  }
+
+  .workflow-circle-container {
+    min-width: 360px;
+    min-height: 360px;
+    margin: 16px auto;
+  }
+
+  /* Scale down entire workflow */
+  .workflow-svg-ring {
+    width: 340px;
+    height: 340px;
+  }
+
+  /* Center */
+  .workflow-center-backdrop {
+    width: 130px;
+    height: 130px;
+  }
+
+  .workflow-center-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .workflow-center-node h4 {
+    font-size: 13px;
+  }
+
+  .workflow-center-node p {
+    font-size: 10px;
+  }
+
+  /* Workflow nodes */
+  .workflow-node-bubble {
+    width: 68px;
+    height: 68px;
+    padding: 6px 4px;
+    border-radius: 14px;
+  }
+
+  .workflow-node-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .workflow-node-label {
+    font-size: 8px;
+    line-height: 1.15;
+  }
+
+  .workflow-status-badge {
+    width: 14px;
+    height: 14px;
+    top: 4px;
+    right: 4px;
+  }
+
+  /* Bring nodes closer to center */
+  .workflow-node-item {
+    transform-origin: center;
+  }
+
+  /* Legend */
+  .workflow-legend {
+    gap: 12px;
+    font-size: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 12px;
+  }
+
+  .workflow-legend-item {
+    gap: 6px;
+  }
+}
 
 /* =====================================AutomationProgress====================================    */
 
