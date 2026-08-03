@@ -1,3 +1,27 @@
+/* ========================== Reset All ========================= */
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global Font */
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  font-family: "Outfit", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Monospace Font (optional) */
+.font-mono {
+  font-family: "JetBrains Mono", monospace;
+}
+
 /* ========================== Common ========================= */
 
 .common-title-primary{
@@ -353,7 +377,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 18px;
 }
 
 .workflow-title {
