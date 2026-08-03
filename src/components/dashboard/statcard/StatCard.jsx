@@ -7,10 +7,11 @@ export default function StatCard({ icon, value, label, subtext, iconBg, iconColo
         {icon}
       </div>
       <div className="stat-content">
-        <h2 className="stat-value">{value}</h2>
-        <p className="stat-label">{label}</p>
-        {/* <span className="stat-subtext">{subtext}</span> */}
+        <h2 className="stat-value-22">{value}</h2>
+        <p className="common-text-grey-12">{label}</p>
+        {/* <h3 className="common-title-secondary">{value}</h3>
+        <p className="common-text-grey-14">{label}</p> */}
       </div>
     </div>
   );
-}
+};

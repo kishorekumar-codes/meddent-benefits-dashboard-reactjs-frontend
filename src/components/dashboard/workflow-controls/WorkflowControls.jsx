@@ -3,11 +3,8 @@ import { Play, Pause, RotateCcw, Square } from 'lucide-react';
 
 export default function WorkflowControls() {
   return (
-    <div className="workflow-controls-card">
-      <div className="workflow-controls-header">
-        <h3 className="workflow-controls-title">Workflow Controls</h3>
-        <p className="workflow-controls-subtitle">Manage automation in real time</p>
-      </div>
+    <div className="card">
+        <h3 className="common-title-primary">Workflow Controls</h3>
 
       <div className="control-buttons">
         <button className="ctrl-btn green">

@@ -3,10 +3,8 @@ import { Clock } from 'lucide-react';
 
 const AutomationProgress = () => {
   return (
-    <div className="automation-card">
-      <div className="automation-card-header">
-        <h3 className="automation-card-title">Automation Progress</h3>
-      </div>
+    <div className="card">
+      <h3 className="common-title-primary">Automation Progress</h3>
 
       <div className="gauge-content-body">
         {/* Large Half-Circle Gauge */}
@@ -30,24 +28,24 @@ const AutomationProgress = () => {
             />
           </svg>
           <div className="gauge-text">
-            <span className="gauge-percentage">72%</span>
-            <span className="gauge-label">Overall Progress</span>
+            <span className="stat-value-22">72%</span>
+            <span className="common-text-grey-12">Overall Progress</span>
           </div>
         </div>
 
         {/* Stats Section Aligned to the Right */}
         <div className="progress-stats">
           <div className="stat-row">
-            <span className="stat-label">
+            <span className="common-text-grey-14">
               <span className="dot green"></span> Completed
             </span>
-            <span className="val">72%</span>
+            <span className="common-title-secondary">72%</span>
           </div>
           <div className="stat-row">
-            <span className="stat-label">
+            <span className="common-text-grey-14">
               <span className="dot blue"></span> In Progress
             </span>
-            <span className="val">18%</span>
+            <span className="common-title-secondary">18%</span>
           </div>
         </div>
       </div>
@@ -55,7 +53,7 @@ const AutomationProgress = () => {
       {/* Footer */}
       <div className="time-remaining">
         <span className="time-label">Estimated Time Remaining</span>
-        <span className="time">
+        <span className="common-title-secondary time">
           18m 24s <Clock size={15} className="clock-icon" />
         </span>
       </div>

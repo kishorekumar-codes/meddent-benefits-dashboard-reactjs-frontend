@@ -1,4 +1,74 @@
-/* ==========================Header ========================= */
+/* ========================== Common ========================= */
+
+.common-title-primary{
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  margin-bottom: 16px;
+}
+
+.common-title-secondary{
+  font-size: 15px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 2px 0;
+}
+
+.common-text-grey-11{
+  font-size: 11px;
+  font-weight: 500;
+  color: #64748b;
+  margin: 2px 0 0 0;
+}
+
+.common-text-grey-12{
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+  margin: 2px 0 0 0;
+}
+
+.common-text-grey-14{
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748b;
+  margin: 2px 0 0 0;
+}
+
+.uppercase{
+  text-transform: uppercase;
+}
+
+.stat-value-22 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.stat-value-18 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.card{
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  border: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ========================== Header ========================= */
 /* Header Container */
 .dashboard-header {
   display: flex;
@@ -167,20 +237,6 @@
   flex-direction: column;
 }
 
-.stat-value {
-  font-size: 22px;
-  font-weight: 700;
-  color: #0f172a;
-  margin: 0;
-  line-height: 1.1;
-}
-
-.stat-label {
-  font-size: 11px;
-  color: #64748b;
-  margin: 2px 0 0 0;
-}
-
 .stat-subtext {
   font-size: 10px;
   color: #94a3b8;
@@ -283,252 +339,218 @@
 }
 
 /* ==============================Workflow Visualization Card=============================== */
-/* Card Container */
-.workflow-card {
+.workflow-container {
   background: #ffffff;
   border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  border: 1px solid #f1f5f9;
+  padding: 28px;
+  border: 1px solid #e2e8f0;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Header */
+.workflow-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.workflow-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.workflow-title-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #38bdf8;
+  border-radius: 50%;
+}
+
+/* .workflow-title h2 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1e293b;
+  letter-spacing: 0.5px;
+  margin: 0;
+} */
+
+.workflow-total {
+  font-size: 13px;
+  color: #94a3b8;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+/* Timeline Rows */
+.workflow-timeline {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  min-height: 640px;
-  width: 100%;
-  box-sizing: border-box;
+  gap: 14px;
 }
 
-.workflow-card-header {
-  margin-bottom: 0;
-}
-
-.workflow-card-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: #1e293b;
-  margin: 0;
-}
-
-.workflow-card-subtitle {
-  font-size: 12px;
-  color: #64748b;
-  margin: 4px 0 0 0;
-}
-
-/* Container */
-.workflow-circle-container {
+.workflow-step-row {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
   position: relative;
-  width: 100%;
-  flex: 1;
-  min-height: 560px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px 0;
 }
 
-/* Scaled SVG Ring */
-.workflow-svg-ring {
+/* Node Connector */
+.workflow-node-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 40px;
+  flex-shrink: 0;
+}
+
+.workflow-line {
   position: absolute;
-  width: 560px;
-  height: 560px;
-  pointer-events: none;
-}
-
-.workflow-ring-bg {
-  fill: none;
-  stroke: #e2e8f0;
-  stroke-width: 2.5;
-  stroke-dasharray: 6 6;
-}
-
-/* Gradient Green Arc */
-.workflow-ring-completed {
-  fill: none;
-  stroke: url(#greenGradient);
-  stroke-width: 3.5;
-  stroke-dasharray: 1508;
-  stroke-dashoffset: 1070;
-  transform: rotate(-90deg);
-  transform-origin: 50% 50%;
-  filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.25));
-}
-
-.workflow-ring-progress {
-  fill: none;
-  stroke: #3b82f6;
-  stroke-width: 3;
-  stroke-dasharray: 1508;
-  stroke-dashoffset: 1290;
-  transform: rotate(65deg);
-  transform-origin: 50% 50%;
-}
-
-/* Grey Center Circle Backdrop */
-.workflow-center-backdrop {
-  width: 210px;
-  height: 210px;
-  border-radius: 50%;
-  background-color: #f8fafc;
-  border: 1px solid #f1f5f9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: 38px;
+  bottom: -18px;
+  width: 2px;
+  background-color: #e2e8f0;
   z-index: 1;
 }
 
-.workflow-center-node {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.workflow-line.completed {
+  background-color: #10b981;
 }
 
-.workflow-center-icon-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 6px;
+.workflow-line.running {
+  background-color: #06b6d4;
 }
 
-.workflow-center-icon {
-  color: #2563eb;
-}
-
-.workflow-center-node h4 {
-  font-size: 15px;
-  font-weight: 700;
-  margin: 0;
-  color: #0f172a;
-}
-
-.workflow-center-node p {
-  font-size: 11.5px;
-  color: #64748b;
-  margin: 3px 0 0 0;
-}
-
-/* Node Item Wrappers */
-.workflow-node-item {
-  position: absolute;
+.workflow-node {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #e2e8f0;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 3;
+  z-index: 2;
+  margin-top: 10px;
+  color: #cbd5e1;
 }
 
-/* Node Bubble Cards */
-.workflow-node-bubble {
-  width: 90px;
-  height: 84px;
-  border-radius: 18px;
+.workflow-node.completed {
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.workflow-node.running {
+  border-color: #06b6d4;
+  color: #06b6d4;
+}
+
+.workflow-node .spin {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Step Card Styles */
+.workflow-card {
+  flex: 1;
+  background: #fafafa;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.workflow-card.completed {
+  background: #f0fdf4;
+  border-color: #dcfce7;
+}
+
+.workflow-card.running {
+  background: #ecfeff;
+  border: 1.5px solid #06b6d4;
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.08);
+}
+
+.workflow-card.waiting {
   background: #ffffff;
-  border: 1.5px solid #e2e8f0;
+  border-color: #f1f5f9;
+}
+
+/* Card Left Section */
+.workflow-card-left {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 8px 6px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-  color: #475569;
-  box-sizing: border-box;
-  transition: all 0.3s ease;
+  gap: 2px;
 }
 
-/* Gradient Green Border & Background Tint for Completed Steps */
-.workflow-node-bubble.workflow-completed {
-  border: 2px solid transparent;
-  background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(135deg, #10b981 0%, #059669 100%);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  color: #059669;
-  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.15);
+.workflow-step-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
 }
 
-.workflow-node-bubble.workflow-in-progress {
-  border-color: #3b82f6;
-  color: #2563eb;
+.workflow-card.waiting .common-title-secondary {
+  color: #94a3b8;
 }
 
-.workflow-node-icon {
+/* Card Right Section */
+.workflow-card-right {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 4px;
+  gap: 20px;
 }
 
-.workflow-node-label {
-  font-size: 10px;
-  font-weight: 600;
-  color: #1e293b;
-  text-align: center;
-  line-height: 1.15;
-}
-
-/* Badges Inside Cards with Gradient */
-.workflow-status-badge {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  color: white;
+.workflow-stat {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-.workflow-status-badge.workflow-check { 
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%); 
+.workflow-stat .active-text {
+  font-size: 13px;
+  color: #06b6d4;
 }
 
-.workflow-status-badge.workflow-progress { 
-  background-color: #3b82f6; 
+/* Badges */
+.workflow-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
 }
 
-.workflow-status-badge.workflow-sync { 
-  background-color: #ffffff; 
-  color: #3b82f6;
-  border: 1px solid #cbd5e1;
+.workflow-badge.completed {
+  background-color: #dcfce7;
+  color: #15803d;
 }
 
-/* Footer Legend */
-.workflow-legend {
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-  font-size: 12px;
-  color: #475569;
-  padding-top: 14px;
-  border-top: 1px solid #f8fafc;
+.workflow-badge.running {
+  background-color: #cffaff;
+  color: #0891b2;
 }
 
-.workflow-legend-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.workflow-badge.waiting {
+  background-color: #f1f5f9;
+  color: #94a3b8;
 }
-
-.workflow-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-}
-
-.workflow-dot.workflow-green { 
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%); 
-}
-.workflow-dot.workflow-blue { background-color: #3b82f6; }
-.workflow-dot.workflow-grey { background-color: #cbd5e1; }
-
 
 
 /* =====================================AutomationProgress====================================    */
 /* Card Container */
-.automation-card {
+/* .automation-card {
   background: #ffffff;
   border-radius: 16px;
   padding: 24px;
@@ -538,33 +560,25 @@
   flex-direction: column;
   width: 100%;
   box-sizing: border-box;
-}
+} */
 
-.automation-card-header {
+/* .automation-card-header {
   margin-bottom: 16px;
-}
+} */
 
-.automation-card-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: #1e293b;
-  margin: 0;
-}
-
-/* Gauge & Stats Main Row */
 .gauge-content-body {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Spreads gauge to left, stats to right */
+  justify-content: space-between; 
   gap: 24px;
-  margin: 12px 0 20px 0;
+  margin: 0px 0px 18px;
   width: 100%;
 }
 
 /* Substantially enlarged half circle gauge */
 .gauge-wrapper {
   position: relative;
-  width: 220px; /* Increased size to fit proportional height/width */
+  width: 220px; 
   flex-shrink: 0;
   text-align: center;
 }
@@ -586,12 +600,12 @@
   align-items: center;
 }
 
-.gauge-percentage {
-  font-size: 26px; /* Scaled up percentage label inside arc */
+/* .gauge-percentage {
+  font-size: 26px; 
   font-weight: 700;
   color: #0f172a;
   line-height: 1;
-}
+} */
 
 .gauge-label {
   font-size: 11px;
@@ -636,6 +650,7 @@
   height: 9px;
   border-radius: 50%;
   display: inline-block;
+  margin-left: 10px;
 }
 
 .dot.green {
@@ -693,18 +708,12 @@
   margin-bottom: 16px;
 }
 
-.workflow-controls-title {
+/* .workflow-controls-title {
   font-size: 16px;
   font-weight: 700;
   color: #1e293b;
   margin: 0;
-}
-
-.workflow-controls-subtitle {
-  font-size: 12px;
-  color: #64748b;
-  margin: 4px 0 0 0;
-}
+} */
 
 /* Control Buttons Grid */
 .control-buttons {
@@ -723,8 +732,8 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 500;
   color: #1e293b;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -792,12 +801,12 @@
   justify-content: space-between;
 }
 
-.queue-card-title {
+/* .queue-card-title {
   font-size: 16px;
   font-weight: 700;
   color: #1e293b;
   margin: 0;
-}
+} */
 
 .view-all-link {
   font-size: 12px;
@@ -810,13 +819,6 @@
 .view-all-link:hover {
   color: #1d4ed8;
   text-decoration: underline;
-}
-
-/* Decreased Subtitle Font Size */
-.queue-card-subtitle {
-    font-size: 12px;
-    color: rgb(100, 116, 139);
-    margin: 4px 0px 0px;
 }
 
 /* Dual Scrollable Container (X and Y Axis) */
@@ -977,12 +979,12 @@
   border: 1px solid #f1f5f9;
 }
 
-.mini-title {
+/* .mini-title {
   font-size: 14px;
     font-weight: 600;
     color: rgb(30, 41, 59);
     margin: 0px;
-}
+} */
 
 .mini-body {
   display: flex;
@@ -1006,7 +1008,7 @@
 
 .mini-change {
   display: inline-block;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   margin-top: 4px;
 }

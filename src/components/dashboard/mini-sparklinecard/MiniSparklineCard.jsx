@@ -3,13 +3,10 @@ import React from 'react';
 export default function MiniSparklineCard({ title, value, subtext, change, changeType, strokeColor }) {
   return (
     <div className="mini-card">
-      <div className="mini-card-header">
-        <span className="mini-title">{title}</span>
-      </div>
+        <span className="common-title-secondary">{title}</span>
       <div className="mini-body">
         <div className="mini-info">
-           {/* <span className="mini-subtext">{subtext}</span> */}
-          <h3 className="mini-value">{value}</h3> 
+          <h3 className="stat-value-18">{value}</h3> 
           <span className={`mini-change ${changeType}`}>{change}</span>
         </div>
         
