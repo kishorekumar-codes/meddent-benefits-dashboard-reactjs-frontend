@@ -13,7 +13,7 @@ A modern **frontend dashboard** designed to track and automate patient insurance
 
 - **Frontend Framework**: React
 - **Build Tool**: Vite
-- **Styling**: Tailwind CSS / CSS
+- **Styling**: CSS
 
 ## How to Run the Project
 
