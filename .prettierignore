@@ -1,0 +1,12 @@
+# Dependencies & Builds
+node_modules/
+dist/
+build/
+
+
+# Package & Config Locks
+yarn.lock
+package-lock.json
+
+# Public Assets
+public/
