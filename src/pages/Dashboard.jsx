@@ -6,8 +6,10 @@ import WorkflowVisualization from "../components/dashboard/workflow-visualizatio
 import AutomationProgress from "../components/dashboard/automation-progress/AutomationProgress";
 import WorkflowControls from "../components/dashboard/workflow-controls/WorkflowControls";
 import PatientQueue from "../components/dashboard/patient-queue/PatientQueue";
-import MiniSparklineCard from "../components/dashboard/mini-sparklinecard/MiniSparklineCard";
+// import MiniSparklineCard from "../components/dashboard/mini-sparklinecard/MiniSparklineCard";
 import Footer from "../components/dashboard/layout/Footer";
+import BenefitsCheckForm from "../components/dashboard/BenefitsCheckForm/BenefitsCheckForm";
+import ErrorLog from "../components/dashboard/ErrorLog/ErrorLog";
 
 export default function Dashboard() {
   return (
@@ -15,6 +17,30 @@ export default function Dashboard() {
       <Header />
 
       <main className="dashboard-content">
+
+        {/* meddent form */}
+        <section className="benefits-card">
+          <AutomationProgress />
+          <BenefitsCheckForm />
+        </section>
+
+        {/* Main Grid: Left Flow Diagram | Right Control Panel */}
+        <section className="grid-main">
+          <div className="grid-left">
+            <WorkflowVisualization />
+          </div>
+          <div className="grid-right">
+            {/* <AutomationProgress /> */}
+            <WorkflowControls />
+            <PatientQueue />
+          </div>
+        </section>
+
+        {/* Error Log Section */}
+        <section className="benefits-card">
+          <ErrorLog />
+        </section>
+
         {/* Top 4 Stat Cards */}
         <section className="grid-4">
           <StatCard
@@ -47,20 +73,8 @@ export default function Dashboard() {
           />
         </section>
 
-        {/* Main Grid: Left Flow Diagram | Right Control Panel */}
-        <section className="grid-main">
-          <div className="grid-left">
-            <WorkflowVisualization />
-          </div>
-          <div className="grid-right">
-            <AutomationProgress />
-            <WorkflowControls />
-            <PatientQueue />
-          </div>
-        </section>
-
         {/* Bottom 4 Sparkline Cards */}
-        <section className="grid-4">
+        {/* <section className="grid-4">
           <MiniSparklineCard
             title="Claims Submitted"
             value="46"
@@ -89,7 +103,7 @@ export default function Dashboard() {
             changeType="positive"
             strokeColor="#06b6d4"
           />
-        </section>
+        </section> */}
       </main>
 
       <Footer />

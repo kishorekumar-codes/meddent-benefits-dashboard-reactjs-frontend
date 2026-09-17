@@ -1,0 +1,68 @@
+const ErrorLogData = [
+  {
+    id: 1,
+    dateTime: "17 Sep 2026, 10:48 AM",
+    patient: "James Wilson",
+    step: "Step 2",
+    errorMessage: "Payer portal timeout. Unable to fetch verification data.",
+    status: "Failed",
+  },
+  {
+    id: 2,
+    dateTime: "17 Sep 2026, 10:40 AM",
+    patient: "Sophia Brown",
+    step: "Step 1",
+    errorMessage: "Invalid patient ID format.",
+    status: "Failed",
+  },
+  {
+    id: 3,
+    dateTime: "17 Sep 2026, 09:32 AM",
+    patient: "William Davis",
+    step: "Step 3",
+    errorMessage: "Coverage data not found for this patient.",
+    status: "Failed",
+  },
+  {
+    id: 4,
+    dateTime: "17 Sep 2026, 09:15 AM",
+    patient: "Olivia Martinez",
+    step: "Step 4",
+    errorMessage: "PMS writeback rejected. Duplicate entry detected.",
+    status: "Failed",
+  },
+  {
+    id: 5,
+    dateTime: "17 Sep 2026, 08:50 AM",
+    patient: "Liam Johnson",
+    step: "Step 2",
+    errorMessage: "Payer portal authentication failed.",
+    status: "Failed",
+  },
+  {
+    id: 6,
+    dateTime: "17 Sep 2026, 08:22 AM",
+    patient: "Emma Garcia",
+    step: "Step 1",
+    errorMessage: "Missing primary insurance subscriber ID.",
+    status: "Failed",
+  },
+  {
+    id: 7,
+    dateTime: "17 Sep 2026, 07:58 AM",
+    patient: "Lucas Anderson",
+    step: "Step 3",
+    errorMessage: "Coordination of benefits calculation error.",
+    status: "Failed",
+  },
+  {
+    id: 8,
+    dateTime: "17 Sep 2026, 07:12 AM",
+    patient: "Ava Taylor",
+    step: "Step 4",
+    errorMessage: "Connection timed out while updating ECS report.",
+    status: "Failed",
+  },
+];
+
+export default ErrorLogData;

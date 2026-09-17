@@ -38,7 +38,7 @@ const WorkflowVisualization = () => {
               <div className={`workflow-card ${step.status}`}>
                 <div className="workflow-card-left">
                   <div className="common-text-grey-12">STEP {step.stepNumber}</div>
-                  <h3 className="common-title-secondary">{step.name}</h3>
+                  <h3 className="common-sub-primary">{step.name}</h3>
 
                   {(step.startTime || step.endTime) && (
                     <div className="common-text-grey-12">
@@ -53,14 +53,14 @@ const WorkflowVisualization = () => {
                   {step.duration && (
                     <div className="workflow-stat">
                       <span className="common-text-grey-11">DURATION</span>
-                      <span className="common-title-secondary">{step.duration}</span>
+                      <span className="common-sub-primary">{step.duration}</span>
                     </div>
                   )}
 
                   {step.activeTask && (
                     <div className="workflow-stat active">
                       <span className="common-text-grey-11">ACTIVE TASK</span>
-                      <span className="common-title-secondary active-text">{step.activeTask}</span>
+                      <span className="common-sub-primary active-text">{step.activeTask}</span>
                     </div>
                   )}
 

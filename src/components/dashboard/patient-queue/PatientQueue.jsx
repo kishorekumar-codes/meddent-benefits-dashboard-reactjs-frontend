@@ -1,4 +1,4 @@
-import { MoreVertical } from "lucide-react";
+import { ArrowRight, MoreVertical } from "lucide-react";
 import QueueData from "../../../data/QueueData";
 
 export default function PatientQueue() {
@@ -8,8 +8,8 @@ export default function PatientQueue() {
       <div className="queue-header">
         <div className="queue-title-row">
           <h3 className="common-title-primary">Patient Process Queue</h3>
-          <a href="#view-all" className="view-all-link">
-            View All
+          <a href="#view-all-logs" className="view-all-link">
+            View All <ArrowRight size={14} />
           </a>
         </div>
       </div>

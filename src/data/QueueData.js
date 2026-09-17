@@ -5,7 +5,7 @@ const QueueData = [
     avatar: "https://i.pravatar.cc/100?img=11",
     status: "Completed",
     statusType: "green",
-    step: "Final Verification Complete",
+    step: "Step 4",
     updated: "2 mins ago",
   },
   {
@@ -14,7 +14,7 @@ const QueueData = [
     avatar: "https://i.pravatar.cc/100?img=5",
     status: "Completed",
     statusType: "green",
-    step: "Final Verification Complete",
+    step: "Step 4",
     updated: "4 mins ago",
   },
   {
@@ -23,7 +23,7 @@ const QueueData = [
     avatar: "https://i.pravatar.cc/100?img=12",
     status: "In Progress",
     statusType: "blue",
-    step: "Dental Carrier Verification",
+    step: "Step 2",
     updated: "6 mins ago",
   },
   {
@@ -32,7 +32,7 @@ const QueueData = [
     avatar: "https://i.pravatar.cc/100?img=9",
     status: "In Progress",
     statusType: "blue",
-    step: "Secondary Insurance Check",
+    step: "Step 1",
     updated: "8 mins ago",
   },
   {
@@ -50,7 +50,7 @@ const QueueData = [
     avatar: "https://i.pravatar.cc/100?img=16",
     status: "In Progress",
     statusType: "blue",
-    step: "Aggregate Responses",
+    step: "Step 3",
     updated: "12 mins ago",
   },
   {
@@ -59,7 +59,7 @@ const QueueData = [
     avatar: "https://i.pravatar.cc/100?img=15",
     status: "Pending",
     statusType: "orange",
-    step: " ",
+    step: "-",
     updated: "15 mins ago",
   },
   {
@@ -68,7 +68,7 @@ const QueueData = [
     avatar: "https://i.pravatar.cc/100?img=20",
     status: "Completed",
     statusType: "green",
-    step: "Final Verification Complete",
+    step: "Step 4",
     updated: "18 mins ago",
   },
   {
@@ -77,7 +77,7 @@ const QueueData = [
     avatar: "https://i.pravatar.cc/100?img=68",
     status: "Completed",
     statusType: "green",
-    step: "Final Verification Complete",
+    step: "Step 4",
     updated: "21 mins ago",
   },
   {
@@ -86,7 +86,7 @@ const QueueData = [
     avatar: "https://i.pravatar.cc/100?img=26",
     status: "In Progress",
     statusType: "blue",
-    step: "Dental Carrier Verification",
+    step: "Step 2",
     updated: "25 mins ago",
   },
   {
@@ -95,7 +95,7 @@ const QueueData = [
     avatar: "https://i.pravatar.cc/100?img=33",
     status: "In Progress",
     statusType: "blue",
-    step: "Secondary Insurance Check",
+    step: "Step 3",
     updated: "28 mins ago",
   },
   {
@@ -104,7 +104,7 @@ const QueueData = [
     avatar: "https://i.pravatar.cc/100?img=47",
     status: "Completed",
     statusType: "green",
-    step: "Final Verification Complete",
+    step: "Step 4",
     updated: "30 mins ago",
   },
 ];

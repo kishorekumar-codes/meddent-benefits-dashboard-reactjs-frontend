@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { HeartHandshake, Calendar, Clock, Bell, ChevronDown } from "lucide-react";
+import { HeartHandshake, Calendar, Bell, ChevronDown } from "lucide-react";
 
 const Header = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -18,11 +18,11 @@ const Header = () => {
     year: "numeric",
   });
 
-  const formattedTime = currentTime.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  });
+  // const formattedTime = currentTime.toLocaleTimeString("en-US", {
+  //   hour: "2-digit",
+  //   minute: "2-digit",
+  //   hour12: true,
+  // });
 
   return (
     <header className="dashboard-header">
@@ -43,10 +43,10 @@ const Header = () => {
           <span>{formattedDate}</span>
         </div>
 
-        <div className="info-chip">
+        {/* <div className="info-chip">
           <Clock size={14} className="chip-icon" />
           <span>{formattedTime}</span>
-        </div>
+        </div> */}
 
         <button className="notification-btn" aria-label="Notifications">
           <Bell size={18} className="notification-icon" />

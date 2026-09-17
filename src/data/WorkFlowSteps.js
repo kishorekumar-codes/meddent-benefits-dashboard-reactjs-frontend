@@ -2,7 +2,7 @@ const WorkFlowSteps = [
   {
     id: 1,
     stepNumber: "01",
-    name: "Data Validation",
+    name: "Benefits data intake from PMS",
     status: "completed",
     startTime: "10:43:37",
     endTime: "10:43:47",
@@ -11,7 +11,7 @@ const WorkFlowSteps = [
   {
     id: 2,
     stepNumber: "02",
-    name: "Carrier Verification",
+    name: "Benefits & Verification data capture from payer portals",
     status: "completed",
     startTime: "10:43:47",
     endTime: "10:44:22",
@@ -20,7 +20,7 @@ const WorkFlowSteps = [
   {
     id: 3,
     stepNumber: "03",
-    name: "Dental Carrier Verification",
+    name: "Calculate coverage and coordination of benefits",
     status: "running",
     startTime: "10:44:22",
     activeTask: "Processing...",
@@ -28,31 +28,7 @@ const WorkFlowSteps = [
   {
     id: 4,
     stepNumber: "04",
-    name: "Secondary Insurance Check",
-    status: "waiting",
-  },
-  {
-    id: 5,
-    stepNumber: "05",
-    name: "Medicaid Authorization",
-    status: "waiting",
-  },
-  {
-    id: 6,
-    stepNumber: "06",
-    name: "Aggregate Responses",
-    status: "waiting",
-  },
-  {
-    id: 7,
-    stepNumber: "07",
-    name: "Generate Benefits PDF",
-    status: "waiting",
-  },
-  {
-    id: 8,
-    stepNumber: "08",
-    name: "Final Verification Complete",
+    name: "Update ECS and Benefits Verification report in PMS",
     status: "waiting",
   },
 ];
