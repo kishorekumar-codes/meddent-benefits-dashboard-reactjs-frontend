@@ -1,5 +1,5 @@
 
-import  { useState } from 'react';
+import { useState } from 'react';
 import { Input, DatePicker, Button } from 'antd';
 import dayjs from 'dayjs';
 
@@ -56,7 +56,7 @@ const BenefitsCheckForm = () => {
       <div className="form-section date-section">
         <div className="label-wrapper">
           <span className="common-title-secondary">
-            Date Range
+            Oppointment Date Range
           </span>
         </div>
 

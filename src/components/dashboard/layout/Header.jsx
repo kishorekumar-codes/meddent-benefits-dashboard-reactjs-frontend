@@ -18,12 +18,6 @@ const Header = () => {
     year: "numeric",
   });
 
-  // const formattedTime = currentTime.toLocaleTimeString("en-US", {
-  //   hour: "2-digit",
-  //   minute: "2-digit",
-  //   hour12: true,
-  // });
-
   return (
     <header className="dashboard-header">
       <div className="header-brand">
@@ -42,11 +36,6 @@ const Header = () => {
           <Calendar size={14} className="chip-icon" />
           <span>{formattedDate}</span>
         </div>
-
-        {/* <div className="info-chip">
-          <Clock size={14} className="chip-icon" />
-          <span>{formattedTime}</span>
-        </div> */}
 
         <button className="notification-btn" aria-label="Notifications">
           <Bell size={18} className="notification-icon" />

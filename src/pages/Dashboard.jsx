@@ -37,9 +37,9 @@ export default function Dashboard() {
         </section>
 
         {/* Error Log Section */}
-        <section className="benefits-card">
+        {/* <section className="benefits-card">
           <ErrorLog />
-        </section>
+        </section> */}
 
         {/* Top 4 Stat Cards */}
         <section className="grid-4">
