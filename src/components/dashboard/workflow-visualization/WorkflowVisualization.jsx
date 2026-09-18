@@ -1,15 +1,16 @@
-import { Check, RotateCw } from "lucide-react";
+import { Check, CircleX, RotateCw } from "lucide-react";
 import WorkFlowSteps from "../../../data/WorkFlowSteps";
 
-const WorkflowVisualization = () => {
+const WorkflowVisualization = ({ patientName = "James Wilson" }) => {
   return (
     <div className="card">
       {/* Header */}
       <div className="workflow-header">
         <h3 className="common-title-primary">WORKFLOW</h3>
-        <span className="common-text-grey-12" style={{ marginBottom: "8px" }}>
-          Total steps: {WorkFlowSteps.length}
-        </span>
+        <div className="patient-tag">
+          <span className="patient-tag-dot"></span>
+          Processing {patientName || "Patient Name"}
+        </div>
       </div>
 
       {/* Timeline List */}
@@ -17,6 +18,7 @@ const WorkflowVisualization = () => {
         {WorkFlowSteps.map((step, index) => {
           const isCompleted = step.status === "completed";
           const isRunning = step.status === "running";
+          const isInQuery = step.status === "in-query";
 
           return (
             <div key={step.id} className="workflow-step-row">
@@ -24,13 +26,21 @@ const WorkflowVisualization = () => {
               <div className="workflow-node-container">
                 {index !== WorkFlowSteps.length - 1 && (
                   <div
-                    className={`workflow-line ${isCompleted ? "completed" : isRunning ? "running" : ""}`}
+                    className={`workflow-line ${isCompleted
+                      ? "completed"
+                      : isRunning
+                        ? "running"
+                        : isInQuery
+                          ? "in-query"
+                          : ""
+                      }`}
                   />
                 )}
 
                 <div className={`workflow-node ${step.status}`}>
                   {isCompleted && <Check size={18} strokeWidth={2.5} />}
                   {isRunning && <RotateCw size={16} className="spin" strokeWidth={2.5} />}
+                  {isInQuery && <CircleX size={18} strokeWidth={2.5} />}
                 </div>
               </div>
 

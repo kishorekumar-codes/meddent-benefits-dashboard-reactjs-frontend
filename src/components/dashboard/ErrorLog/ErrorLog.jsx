@@ -14,7 +14,7 @@ export default function ErrorLog() {
               {ErrorLogData.length} Errors
             </span>
           </div>
-          <a href="#view-all-logs" className="view-all-link">
+          <a href="" className="view-all-link">
             View All Logs <ArrowRight size={14} />
           </a>
         </div>
@@ -60,4 +60,4 @@ export default function ErrorLog() {
       </div>
     </div>
   );
-}
+};

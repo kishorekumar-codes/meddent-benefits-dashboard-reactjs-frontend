@@ -1,7 +1,7 @@
-import { ClipboardList, CheckCircle2, Clock, TrendingUp } from "lucide-react";
+// import { ClipboardList, CheckCircle2, Clock, TrendingUp } from "lucide-react";
 
 import Header from "../components/dashboard/layout/Header";
-import StatCard from "../components/dashboard/statcard/StatCard";
+// import StatCard from "../components/dashboard/statcard/StatCard";
 import WorkflowVisualization from "../components/dashboard/workflow-visualization/WorkflowVisualization";
 import AutomationProgress from "../components/dashboard/automation-progress/AutomationProgress";
 import WorkflowControls from "../components/dashboard/workflow-controls/WorkflowControls";
@@ -9,7 +9,7 @@ import PatientQueue from "../components/dashboard/patient-queue/PatientQueue";
 // import MiniSparklineCard from "../components/dashboard/mini-sparklinecard/MiniSparklineCard";
 import Footer from "../components/dashboard/layout/Footer";
 import BenefitsCheckForm from "../components/dashboard/BenefitsCheckForm/BenefitsCheckForm";
-import ErrorLog from "../components/dashboard/ErrorLog/ErrorLog";
+// import ErrorLog from "../components/dashboard/ErrorLog/ErrorLog";
 
 export default function Dashboard() {
   return (
@@ -42,7 +42,7 @@ export default function Dashboard() {
         </section> */}
 
         {/* Top 4 Stat Cards */}
-        <section className="grid-4">
+        {/* <section className="grid-4">
           <StatCard
             icon={<ClipboardList size={20} />}
             value="128"
@@ -71,7 +71,7 @@ export default function Dashboard() {
             iconBg="#faf5ff"
             iconColor="#a855f7"
           />
-        </section>
+        </section> */}
 
         {/* Bottom 4 Sparkline Cards */}
         {/* <section className="grid-4">

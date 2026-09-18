@@ -77,6 +77,7 @@ body,
   color: #1e293b;
   margin: 0;
   line-height: 1.1;
+  white-space: nowrap;
 }
 
 .stat-value-18 {
@@ -120,8 +121,10 @@ body,
 .brand-icon {
   width: 38px;
   height: 38px;
-  background: #eff6ff;
-  color: #2563eb;
+  /* background: #eff6ff;
+  color: #2563eb; */
+  background-color: #f0f9ff;
+  color: #0369a1;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -133,12 +136,6 @@ body,
   font-weight: 700;
   color: #1e3a8a;
   letter-spacing: 0.5px;
-  margin: 0;
-}
-
-.brand-subtitle {
-  font-size: 11px;
-  color: #2563eb;
   margin: 0;
 }
 
@@ -166,6 +163,116 @@ body,
 }
 
 /* Notification Button */
+.notification-popover-content {
+  width: 340px;
+  margin: -4px;
+}
+
+.notification-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 4px 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.notification-popover-header h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.notification-popover-header span {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.mark-read-btn {
+  border: none;
+  background: transparent;
+  color: #2563eb;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.notification-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  display: flex;
+  gap: 10px;
+  padding: 13px 4px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-error-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #fef2f2;
+  color: #ef4444;
+}
+
+.notification-patient {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.notification-content h4 {
+  margin: 0 0 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.notification-content p {
+  margin: 0;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.notification-time {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.notification-footer {
+  padding: 10px 4px 2px;
+  text-align: center;
+  border-top: 1px solid #e2e8f0;
+}
+
+.notification-footer button {
+  border: none;
+  background: transparent;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
 .notification-btn {
   position: relative;
   background: #f8fafc;
@@ -300,11 +407,6 @@ body,
     text-overflow: ellipsis;
   }
 
-  /* Hide subtitle */
-  .brand-subtitle {
-    display: none;
-  }
-
   .header-actions {
     gap: 8px;
   }
@@ -370,7 +472,6 @@ body,
 }
 
 /* ==============================Workflow Visualization Card=============================== */
-/* ==============================Workflow Visualization Card=============================== */
 .workflow-container {
   background: #ffffff;
   border-radius: 16px;
@@ -388,24 +489,27 @@ body,
   margin-bottom: 20px !important;
 }
 
-.workflow-title {
-  display: flex;
+/* Patient Processing Tag */
+.patient-tag {
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-}
-
-.workflow-title-dot {
-  width: 10px;
-  height: 10px;
-  background-color: #38bdf8;
-  border-radius: 50%;
-}
-
-.workflow-total {
+  gap: 8px;
+  padding: 8px 14px;
+  color: #0369a1;
+  background-color: #f0f9ff;
+  border-radius: 20px;
   font-size: 13px;
-  color: #94a3b8;
-  font-weight: 500;
-  margin-bottom: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.patient-tag-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #0369a1;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
 }
 
 /* Timeline Rows */
@@ -432,6 +536,7 @@ body,
   flex-shrink: 0;
 }
 
+/* Line */
 .workflow-line {
   position: absolute;
   top: 38px;
@@ -447,6 +552,10 @@ body,
 
 .workflow-line.running {
   background-color: #06b6d4;
+}
+
+.workflow-line.in-query {
+  background-color: #ef4444;
 }
 
 .workflow-node {
@@ -471,6 +580,11 @@ body,
 .workflow-node.running {
   border-color: #06b6d4;
   color: #06b6d4;
+}
+
+.workflow-card.in-query {
+  border-color: #fef2f2;
+  background-color: #fffafa;
 }
 
 .workflow-node .spin {
@@ -503,20 +617,30 @@ body,
   transition: all 0.2s ease;
 }
 
-.workflow-card.completed {
-  background: #f0fdf4;
-  border-color: #dcfce7;
+/* Waiting */
+.workflow-card.waiting {
+  background: #ffffff;
+  border-color: #f1f5f9;
 }
 
+/* Running */
 .workflow-card.running {
   background: #ecfeff;
   border: 1.5px solid #06b6d4;
   box-shadow: 0 4px 12px rgba(6, 182, 212, 0.08);
 }
 
-.workflow-card.waiting {
-  background: #ffffff;
-  border-color: #f1f5f9;
+/* In Query */
+.workflow-node.in-query {
+  border-color: #ef4444;
+  color: #ef4444;
+  background-color: #fef2f2;
+}
+
+/* Completed */
+.workflow-card.completed {
+  background: #f0fdf4;
+  border-color: #dcfce7;
 }
 
 /* Card Left Section (Expanded for long titles) */
@@ -525,9 +649,7 @@ body,
   flex-direction: column;
   gap: 6px;
   flex: 1;
-  /* Takes up all available space */
   min-width: 0;
-  /* Ensures proper text truncation/wrapping */
 }
 
 .workflow-step-num {
@@ -546,9 +668,7 @@ body,
   display: flex;
   align-items: center;
   gap: 10px;
-  /* Reduced gap from 20px to 10px */
   flex-shrink: 0;
-  /* Prevents right stats from shrinking or wrapping */
 }
 
 .workflow-stat {
@@ -557,15 +677,12 @@ body,
   align-items: flex-end;
 }
 
-/* Reduced size for duration and active task typography */
 .workflow-stat .common-title-secondary {
   font-size: 13px;
-  /* Reduced from 15px */
 }
 
 .workflow-stat .common-text-grey-11 {
   font-size: 10px;
-  /* Reduced label font size */
 }
 
 .workflow-stat .active-text {
@@ -577,13 +694,11 @@ body,
   margin: 0 4px;
 }
 
-/* Reduced Badges Size */
+/* Badges */
 .workflow-badge {
   font-size: 10px;
-  /* Reduced from 11px */
   font-weight: 700;
   padding: 3px 10px;
-  /* Reduced padding from 5px 14px */
   border-radius: 12px;
   letter-spacing: 0.3px;
   white-space: nowrap;
@@ -604,128 +719,14 @@ body,
   color: #94a3b8;
 }
 
+.workflow-badge.in-query {
+  color: #dc2626;
+  background-color: #fef2f2;
+  border-color: #fecaca;
+}
+
 /* =====================================AutomationProgress====================================    */
-.gauge-content-body {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  margin: 0px 0px 18px;
-  width: 100%;
-}
 
-/* Substantially enlarged half circle gauge */
-.gauge-wrapper {
-  position: relative;
-  width: 220px;
-  flex-shrink: 0;
-  text-align: center;
-}
-
-.gauge-svg {
-  width: 100%;
-  height: auto;
-  overflow: visible;
-  display: block;
-}
-
-.gauge-text {
-  position: absolute;
-  bottom: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.gauge-label {
-  font-size: 11px;
-  color: #64748b;
-  margin-top: 4px;
-  white-space: nowrap;
-}
-
-/* Stats Container stretching right */
-.progress-stats {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  flex-grow: 1;
-  max-width: 280px;
-  /* Keeps percentage aligned to far right edge cleanly */
-}
-
-.stat-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-  color: #475569;
-}
-
-.stat-label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 500;
-}
-
-.stat-row .val {
-  font-size: 15px;
-  font-weight: 700;
-  color: #0f172a;
-}
-
-/* Indicator Dots */
-.dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  display: inline-block;
-  margin-left: 10px;
-}
-
-.dot.green {
-  background-color: #10b981;
-}
-
-.dot.blue {
-  background-color: #3b82f6;
-}
-
-/* Bottom Footer Section */
-.time-remaining {
-  margin-top: auto;
-  padding-top: 16px;
-  border-top: 1px solid #f1f5f9;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.time-label {
-  font-size: 13px;
-  font-weight: 500;
-  color: #2563eb;
-}
-
-.time-remaining .time {
-  font-size: 14px;
-  font-weight: 700;
-  color: #0f172a;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.clock-icon {
-  color: #64748b;
-}
-
-/* refactor Automation Progress */
-
-/* Card container using your padding requirement */
 .card.automation-card {
   padding: 12px 24px;
   flex-direction: row;
@@ -733,12 +734,11 @@ body,
   gap: 16px;
 }
 
-/* Rounded Icon Badge */
 .icon-badge {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background-color: #e0f2fe;
+  background-color: #f0f9ff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -747,19 +747,25 @@ body,
 
 .gear-icon {
   font-size: 20px;
-  color: #2563eb;
+  color: #0369a1;
 }
 
-/* Middle Progress Content */
 .progress-content {
   flex: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
+  gap: 16px;
+}
+
+.progress-title {
+  white-space: nowrap;
+  margin: 0;
 }
 
 .custom-progress-bar {
-  margin-top: 4px;
+  flex: 1;
+  margin-top: 0;
   line-height: 1;
 }
 
@@ -767,7 +773,6 @@ body,
   padding-right: 0 !important;
 }
 
-/* Stat readout on the right */
 .progress-stats {
   display: flex;
   flex-direction: column;
@@ -882,6 +887,27 @@ body,
   justify-content: space-between;
 }
 
+/* Counter 2/4 */
+.queue-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.queue-step-counter {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 12px;
+  color: #0369a1;
+  background-color: #f0f9ff;
+  font-size: 10.5px;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 15px;
+}
+
+/* View All Link */
 .view-all-link {
   font-size: 12px;
   color: #2563eb;
@@ -891,6 +917,7 @@ body,
   display: flex;
   align-items: center;
   gap: 4px;
+  margin-bottom: 16px;
 }
 
 .view-all-link:hover {
@@ -902,9 +929,7 @@ body,
 .queue-table-container {
   max-height: 280px;
   overflow-y: auto;
-  /* Vertical Scroll */
   overflow-x: auto;
-  /* Horizontal Scroll */
   border-radius: 8px;
   width: 100%;
 }
@@ -929,11 +954,9 @@ body,
   background: #94a3b8;
 }
 
-/* Table Styling with Minimum Width to Trigger X-Scroll on Narrow Displays */
 .queue-table {
   width: 100%;
   min-width: 600px;
-  /* Forces Horizontal Scrollbar when parent container is smaller */
   border-collapse: collapse;
   font-size: 12px;
 }
@@ -1012,19 +1035,28 @@ body,
   display: inline-block;
 }
 
-.status-pill.blue {
-  background: #e0f2fe;
-  color: #0284c7;
+/* Running - Cyan */
+.status-pill.running {
+  background: #ecfeff;
+  color: #0891b2;
 }
 
-.status-pill.orange {
-  background: #fef3c7;
-  color: #d97706;
+/* Waiting - Gray */
+.status-pill.waiting {
+  background: #f1f5f9;
+  color: #64748b;
 }
 
-.status-pill.green {
+/* Completed - Green */
+.status-pill.completed {
   background: #dcfce7;
   color: #15803d;
+}
+
+/* In Query - Red */
+.status-pill.in-query {
+  background: #fef2f2;
+  color: #dc2626;
 }
 
 .step-cell {
@@ -1040,16 +1072,24 @@ body,
   margin-right: 8px;
 }
 
-.step-dot.blue {
-  background-color: #0284c7;
+/* Running - Cyan */
+.step-dot.running {
+  background-color: #06b6d4;
 }
 
-.step-dot.orange {
-  background-color: #f59e0b;
+/* Waiting - Gray */
+.step-dot.waiting {
+  background-color: #94a3b8;
 }
 
-.step-dot.green {
-  background-color: #22c55e;
+/* Completed - Green */
+.step-dot.completed {
+  background-color: #10b981;
+}
+
+/* In Query - Red */
+.step-dot.in-query {
+  background-color: #ef4444;
 }
 
 .updated-cell {
@@ -1285,10 +1325,10 @@ body,
   background-color: #ffffff;
 }
 
-.date-pickers-container:focus-within {
+/* .date-pickers-container:focus-within {
   border-color: #2563eb;
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
-}
+} */
 
 .custom-datepicker {
   border: none !important;

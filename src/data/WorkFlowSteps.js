@@ -12,7 +12,7 @@ const WorkFlowSteps = [
     id: 2,
     stepNumber: "02",
     name: "Benefits & Verification data capture from payer portals",
-    status: "completed",
+    status: "in-query",
     startTime: "10:43:47",
     endTime: "10:44:22",
     duration: "35.0s",

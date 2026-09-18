@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react";
-import { HeartHandshake, Calendar, Bell, ChevronDown } from "lucide-react";
+import {
+  HeartHandshake,
+  Calendar,
+  Bell,
+  ChevronDown,
+  AlertCircle,
+} from "lucide-react";
+import { Popover } from "antd";
+import { notifications } from "../../../data/notifications";
 
 const Header = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -18,11 +26,44 @@ const Header = () => {
     year: "numeric",
   });
 
-  // const formattedTime = currentTime.toLocaleTimeString("en-US", {
-  //   hour: "2-digit",
-  //   minute: "2-digit",
-  //   hour12: true,
-  // });
+  const notificationContent = (
+    <div className="notification-popover-content">
+      <div className="notification-popover-header">
+        <div>
+          <h3>Notifications</h3>
+        </div>
+        <button className="mark-read-btn">Mark all as read</button>
+      </div>
+
+      <div className="notification-list">
+        {notifications.map((notification) => (
+          <div className="notification-item" key={notification.id}>
+            <div className="notification-error-icon">
+              <AlertCircle size={17} />
+            </div>
+
+            <div className="notification-content">
+              <div className="notification-patient">
+                {notification.patientName}
+              </div>
+
+              <h4>{notification.title}</h4>
+
+              <p>{notification.message}</p>
+
+              <span className="notification-time">
+                {notification.time}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="notification-footer">
+        <button>View all notifications</button>
+      </div>
+    </div>
+  );
 
   return (
     <header className="dashboard-header">
@@ -32,8 +73,9 @@ const Header = () => {
         </div>
 
         <div>
-          <h1 className="brand-title">MEDDENT BENEFITS ACCELERATOR</h1>
-          <p className="brand-subtitle">Smart Automation for Better Patient Outcomes</p>
+          <h1 className="brand-title">
+            MEDDENT BENEFITS ACCELERATOR
+          </h1>
         </div>
       </div>
 
@@ -43,11 +85,28 @@ const Header = () => {
           <span>{formattedDate}</span>
         </div>
 
-        <button className="notification-btn" aria-label="Notifications">
-          <Bell size={18} className="notification-icon" />
-          <span className="badge">3</span>
-        </button>
+        {/* Notification Popover */}
+        <Popover
+          content={notificationContent}
+          trigger="click"
+          placement="bottomRight"
+          arrow={true}
+        >
+          <button
+            className="notification-btn"
+            aria-label="Notifications"
+          >
+            <Bell size={18} className="notification-icon" />
 
+            {notifications.length > 0 && (
+              <span className="badge">
+                {notifications.length}
+              </span>
+            )}
+          </button>
+        </Popover>
+
+        {/* User Profile */}
         <div className="user-profile">
           <img
             src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=100"
@@ -56,11 +115,19 @@ const Header = () => {
           />
 
           <div className="user-info">
-            <span className="user-name">Dr. Emily Carter</span>
-            <span className="user-role">Hospital Admin</span>
+            <span className="user-name">
+              Dr. Emily Carter
+            </span>
+
+            <span className="user-role">
+              Hospital Admin
+            </span>
           </div>
 
-          <ChevronDown size={16} className="dropdown-arrow" />
+          <ChevronDown
+            size={16}
+            className="dropdown-arrow"
+          />
         </div>
       </div>
     </header>
