@@ -91,7 +91,7 @@ body,
 .card {
   background: #ffffff;
   border-radius: 16px;
-  padding: 24px;
+  padding: 22px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   border: 1px solid #f1f5f9;
   display: flex;
@@ -486,7 +486,11 @@ body,
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px !important;
+  margin-bottom: 10px !important;
+}
+
+.workflow-header .common-title-primary {
+  margin: 0px !important;
 }
 
 /* Patient Processing Tag */
@@ -516,7 +520,7 @@ body,
 .workflow-timeline {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
 }
 
 .workflow-step-row {
@@ -542,22 +546,10 @@ body,
   top: 38px;
   bottom: -18px;
   width: 2px;
-  background-color: #e2e8f0;
   z-index: 1;
 }
 
-.workflow-line.completed {
-  background-color: #10b981;
-}
-
-.workflow-line.running {
-  background-color: #06b6d4;
-}
-
-.workflow-line.in-query {
-  background-color: #ef4444;
-}
-
+/* Circle */
 .workflow-node {
   width: 38px;
   height: 38px;
@@ -569,22 +561,6 @@ body,
   justify-content: center;
   z-index: 2;
   margin-top: 10px;
-  color: #cbd5e1;
-}
-
-.workflow-node.completed {
-  border-color: #10b981;
-  color: #10b981;
-}
-
-.workflow-node.running {
-  border-color: #06b6d4;
-  color: #06b6d4;
-}
-
-.workflow-card.in-query {
-  border-color: #fef2f2;
-  background-color: #fffafa;
 }
 
 .workflow-node .spin {
@@ -631,7 +607,7 @@ body,
 }
 
 /* In Query */
-.workflow-node.in-query {
+.workflow-node.query {
   border-color: #ef4444;
   color: #ef4444;
   background-color: #fef2f2;
@@ -696,8 +672,8 @@ body,
 
 /* Badges */
 .workflow-badge {
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
   padding: 3px 10px;
   border-radius: 12px;
   letter-spacing: 0.3px;
@@ -719,11 +695,63 @@ body,
   color: #94a3b8;
 }
 
-.workflow-badge.in-query {
+.workflow-badge.query {
   color: #dc2626;
   background-color: #fef2f2;
   border-color: #fecaca;
 }
+
+
+.workflow-progress {
+  display: flex;
+  width: 100%;
+  gap: 0;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.workflow-progress-segment {
+  flex: 1;
+  width: 25%;
+}
+
+.workflow-progress-segment .ant-progress {
+  margin: 0;
+  width: 100%;
+  line-height: 1;
+}
+
+/* 1. Strip default rounded corners on all inner progress components */
+.workflow-progress-segment .ant-progress-inner,
+.workflow-progress-segment .ant-progress-bg,
+.workflow-progress-segment .ant-progress-rail,
+.workflow-progress-segment .ant-progress-outer {
+  border-radius: 0 !important;
+}
+
+/* 2. Round ONLY the outer-left edge of the first segment */
+.workflow-progress-segment:first-child .ant-progress-inner,
+.workflow-progress-segment:first-child .ant-progress-bg,
+.workflow-progress-segment:first-child .ant-progress-rail {
+  border-top-left-radius: 6px !important;
+  border-bottom-left-radius: 6px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+/* 3. Round ONLY the outer-right edge of the last segment */
+.workflow-progress-segment:last-child .ant-progress-inner,
+.workflow-progress-segment:last-child .ant-progress-bg,
+.workflow-progress-segment:last-child .ant-progress-rail {
+  border-top-right-radius: 6px !important;
+  border-bottom-right-radius: 6px !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+/* ========= */
+
+
 
 /* =====================================AutomationProgress====================================    */
 
@@ -735,8 +763,8 @@ body,
 }
 
 .icon-badge {
-  width: 42px;
-  height: 42px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background-color: #f0f9ff;
   display: flex;
@@ -746,7 +774,7 @@ body,
 }
 
 .gear-icon {
-  font-size: 20px;
+  font-size: 18px;
   color: #0369a1;
 }
 
@@ -877,8 +905,8 @@ body,
   box-sizing: border-box;
 }
 
-.queue-header {
-  margin-bottom: 16px;
+.queue-header .common-title-primary {
+  margin-bottom: 10px !important;
 }
 
 .queue-title-row {
@@ -904,7 +932,7 @@ body,
   font-size: 10.5px;
   font-weight: 600;
   line-height: 1;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
 }
 
 /* View All Link */
@@ -917,7 +945,7 @@ body,
   display: flex;
   align-items: center;
   gap: 4px;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .view-all-link:hover {
@@ -927,7 +955,7 @@ body,
 
 /* Dual Scrollable Container (X and Y Axis) */
 .queue-table-container {
-  max-height: 280px;
+  max-height: 318px;
   overflow-y: auto;
   overflow-x: auto;
   border-radius: 8px;
@@ -1054,7 +1082,7 @@ body,
 }
 
 /* In Query - Red */
-.status-pill.in-query {
+.status-pill.query {
   background: #fef2f2;
   color: #dc2626;
 }
@@ -1088,7 +1116,7 @@ body,
 }
 
 /* In Query - Red */
-.step-dot.in-query {
+.step-dot.query {
   background-color: #ef4444;
 }
 
@@ -1282,7 +1310,7 @@ body,
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  margin-top: 18px;
+  margin-top: 10px;
 }
 
 /* Form sections layout */
@@ -1390,10 +1418,10 @@ body,
 .dashboard-content {
   max-width: 1320px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px 20px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 10px;
 }
 
 .grid-4 {
@@ -1427,5 +1455,202 @@ body,
 @media (max-width: 640px) {
   .grid-4 {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 550px) {
+
+  .card.benefits-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .section-divider {
+    display: none;
+  }
+
+  .date-pickers-container {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .custom-datepicker {
+    width: 100%;
+    flex: 1;
+  }
+
+  .action-section {
+    padding-top: 0;
+    width: 100%;
+  }
+
+  .run-check-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ======Automation Progress ====== */
+  .card.automation-card {
+    align-items: flex-start;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .progress-content {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .progress-stats {
+    width: 100%;
+    align-items: flex-start;
+    text-align: left;
+    min-width: unset;
+  }
+
+  /* ======Workflow Visualization STEPS ====== */
+  .workflow-container {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .workflow-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .patient-tag {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .workflow-node-container {
+    width: 28px;
+  }
+
+  .workflow-node {
+    width: 28px;
+    height: 28px;
+    margin-top: 6px;
+  }
+
+  .workflow-node svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .workflow-line {
+    top: 30px;
+    bottom: -18px;
+  }
+
+  .workflow-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .workflow-card-right {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px dashed #e2e8f0;
+    padding-top: 10px;
+  }
+
+  .workflow-stat {
+    align-items: flex-start;
+  }
+
+  .workflow-card-left .common-text-grey-12 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .dot {
+    display: none;
+  }
+
+  /* ===== patient Queue Table ======== */
+
+  .patient-queue-card {
+    width: 100%;
+    min-width: 0;
+    padding: 14px;
+    overflow: hidden;
+  }
+
+  .queue-table-container {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
+  .queue-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+  }
+
+  /* Hide # and Action on mobile */
+  /* .queue-table th:first-child,
+  .queue-table td:first-child,
+  .queue-table th:last-child,
+  .queue-table td:last-child {
+    display: none;
+  } */
+
+  .queue-table th,
+  .queue-table td {
+    padding: 8px 5px;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+  .queue-table th:nth-child(1) {
+    width: 10%;
+  }
+  .queue-table th:nth-child(2) {
+    width: 30%;
+  }
+
+  .queue-table th:nth-child(3) {
+    width: 15%;
+  }
+
+  .queue-table th:nth-child(4) {
+    width: 20%;
+  }
+
+  .queue-table th:nth-child(5) {
+    width: 15%;
+  }
+  .queue-table th:nth-child(5) {
+    width: 10%;
+  }
+
+  .patient-cell {
+    min-width: 0;
+  }
+
+  .p-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .updated-cell {
+    white-space: nowrap;
   }
 }
