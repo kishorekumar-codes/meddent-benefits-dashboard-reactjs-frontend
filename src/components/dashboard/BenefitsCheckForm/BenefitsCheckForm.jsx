@@ -1,12 +1,18 @@
 import { useState } from "react";
 import { DatePicker, Button } from "antd";
-import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
 import dayjs from "dayjs";
+
 import QueueData from "../../../data/QueueData";
 
-const BenefitsCheckForm = () => {
-  const [patient, setPatient] = useState(null);
+const BenefitsCheckForm = ({
+  selectedPatient,
+  onRunBenefitsCheck,
+}) => {
+  const [patient, setPatient] = useState(selectedPatient);
+
   const [startDate, setStartDate] = useState(dayjs());
+
   const [endDate, setEndDate] = useState(dayjs());
 
   // Disable end dates before start date
@@ -23,7 +29,7 @@ const BenefitsCheckForm = () => {
     return current && current.isAfter(endDate, "day");
   };
 
-  // Dropdown styles for react-select
+  // Dropdown styles
   const selectStyles = {
     control: (base) => ({
       ...base,
@@ -77,38 +83,61 @@ const BenefitsCheckForm = () => {
       ...base,
       padding: "10px 12px",
       paddingLeft: "32px",
+
       backgroundColor: state.isSelected
         ? "#2563eb"
         : state.isFocused
           ? "#eff6ff"
           : "#ffffff",
-      color: state.isSelected ? "#ffffff" : "#1e293b",
+
+      color: state.isSelected
+        ? "#ffffff"
+        : "#1e293b",
+
       cursor: "pointer",
     }),
   };
 
-  // for get patient from dummy data
+  // Convert QueueData into react-select options
   const getPatientOptions = (patients) => {
     return patients.map((patient) => ({
       value: patient.id,
-      label: patient.name
+      label: patient.name,
     }));
   };
 
   const patientOptions = getPatientOptions(QueueData);
 
+  // Patient selection
+  const handlePatientChange = (selectedOption) => {
+    setPatient(selectedOption);
+  };
+
+  // Run Benefits Check
   const handleRunCheck = () => {
+    if (!patient) {
+      console.log("Please select or enter a patient.");
+      return;
+    }
+
     console.log("Patient:", patient);
 
     console.log(
       "Start Date:",
-      startDate ? startDate.format("YYYY-MM-DD") : null
+      startDate
+        ? startDate.format("YYYY-MM-DD")
+        : null
     );
 
     console.log(
       "End Date:",
-      endDate ? endDate.format("YYYY-MM-DD") : null
+      endDate
+        ? endDate.format("YYYY-MM-DD")
+        : null
     );
+
+    // Send selected patient to Dashboard
+    onRunBenefitsCheck(patient);
   };
 
   return (
@@ -121,16 +150,24 @@ const BenefitsCheckForm = () => {
           </span>
         </div>
 
-        <Select
+        <CreatableSelect
           options={patientOptions}
           value={patient}
-          onChange={setPatient}
-          placeholder="Select Patient"
+          onChange={handlePatientChange}
+          placeholder="Select Or Enter Patient Name"
           isSearchable
           isClearable
           styles={selectStyles}
           className="patient-select"
           classNamePrefix="patient"
+          formatCreateLabel={(inputValue) =>
+            `Use "${inputValue}"`
+          }
+          getNewOptionData={(inputValue, optionLabel) => ({
+            value: inputValue,
+            label: optionLabel,
+            isCustom: true,
+          })}
         />
       </div>
 
@@ -155,7 +192,9 @@ const BenefitsCheckForm = () => {
             className="custom-datepicker"
           />
 
-          <span className="arrow-separator">→</span>
+          <span className="arrow-separator">
+            →
+          </span>
 
           <DatePicker
             value={endDate}

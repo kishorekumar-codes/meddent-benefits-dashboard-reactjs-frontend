@@ -6,8 +6,12 @@ export const capitalizeFirstLetter = (value) => {
 
 // step line colors 
 export const stepColors = [
-    "#2563eb", // Step 1 - Blue
-    "#db2777", // Step 2 - Pink
-    "#9333ea", // Step 3 - Purple
-    "#f97316", // Step 4 - Orange
+  "#60A5FA", // Step 1 - Soft Blue
+  "#F472B6", // Step 2 - Soft Pink
+  "#FACC15", // Step 3 - Soft Yellow
+  "#FB923C", // Step 4 - Soft Orange
 ];
+
+export const TOTAL_STEPS = 4;
+
+export const STEP_DURATION = 20 * 1000;

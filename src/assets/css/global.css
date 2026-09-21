@@ -606,9 +606,8 @@ body,
   box-shadow: 0 4px 12px rgba(6, 182, 212, 0.08);
 }
 
-/* In Query */
-.workflow-node.query {
-  border-color: #ef4444;
+/* Query */
+.workflow-card.query {
   color: #ef4444;
   background-color: #fef2f2;
 }
@@ -697,8 +696,7 @@ body,
 
 .workflow-badge.query {
   color: #dc2626;
-  background-color: #fef2f2;
-  border-color: #fecaca;
+  background-color: #fee2e2;
 }
 
 
@@ -783,6 +781,7 @@ body,
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   gap: 16px;
 }
 
@@ -791,10 +790,13 @@ body,
   margin: 0;
 }
 
-.custom-progress-bar {
+.workflow-progress {
+  display: flex;
   flex: 1;
-  margin-top: 0;
-  line-height: 1;
+}
+
+.workflow-progress-segment {
+  flex: 1;
 }
 
 .custom-progress-bar .ant-progress-outer {
@@ -803,16 +805,55 @@ body,
 
 .progress-stats {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  min-width: fit-content;
+}
+
+.stat-value-22 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.estimated-time-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  background-color: #e0f2fe;
+  border-radius: 6px;
+}
+
+.time-icon {
+  font-size: 16px;
+  color: #0369a1;
+}
+
+.time-text-group {
+  display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  min-width: 90px;
-  text-align: right;
+  align-items: flex-start;
+}
+
+.time-label {
+  font-size: 10px;
+  color: #0369a1;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.time-value {
+  font-size: 18px;
+  color: #0369a1;
+  font-weight: 600;
+  line-height: 1;
 }
 
 /* =======================================WorkflowControls=============================== */
 
-/* Outer Card Container */
 .workflow-controls-card {
   background: #ffffff;
   border-radius: 16px;
@@ -1621,6 +1662,7 @@ body,
   .queue-table th:nth-child(1) {
     width: 10%;
   }
+
   .queue-table th:nth-child(2) {
     width: 30%;
   }
@@ -1636,6 +1678,7 @@ body,
   .queue-table th:nth-child(5) {
     width: 15%;
   }
+
   .queue-table th:nth-child(5) {
     width: 10%;
   }
