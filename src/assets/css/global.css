@@ -580,19 +580,22 @@ body,
 /* Step Card Styles */
 .workflow-card {
   flex: 1;
+  height: 108px;
+  min-height: 108px;
+  box-sizing: border-box;
+
   background: #fafafa;
   border: 1px solid #e2e8f0;
   border-radius: 14px;
   padding: 13px 16px;
-  /* Slightly reduced vertical/horizontal padding */
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  /* Prevents overlap between left and right sections */
+
   transition: all 0.2s ease;
 }
-
 /* Waiting */
 .workflow-card.waiting {
   background: #ffffff;
@@ -746,10 +749,6 @@ body,
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
 }
-
-/* ========= */
-
-
 
 /* =====================================AutomationProgress====================================    */
 
@@ -1436,6 +1435,9 @@ body,
 .run-check-btn {
   height: 40px;
   border-radius: 8px;
+  /* background-color: #e0f2fe !important;
+  color: #0369a1 !important;
+  border: 1px solid #7dd3fc !important;  */
   background-color: #2563eb;
   font-weight: 600;
   font-size: 14px;
@@ -1446,6 +1448,9 @@ body,
 }
 
 .run-check-btn:hover {
+  /* background-color: #bae6fd !important;
+  color: #075985 !important;
+  border-color: #38bdf8 !important; */
   background-color: #1d4ed8 !important;
 }
 
@@ -1603,7 +1608,7 @@ body,
     justify-content: space-between;
     align-items: center;
     border-top: 1px dashed #e2e8f0;
-    padding-top: 10px;
+    /* padding-top: 10px; */
   }
 
   .workflow-stat {

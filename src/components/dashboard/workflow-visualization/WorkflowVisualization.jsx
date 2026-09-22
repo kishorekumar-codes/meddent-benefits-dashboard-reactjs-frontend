@@ -149,7 +149,7 @@ const WorkflowVisualization = ({
                       className="workflow-line"
                       style={{
                         backgroundColor:
-                          isWaiting
+                          (isWaiting || isRunning)
                             ? "#e2e8f0"
                             : stepColor,
                       }}
@@ -217,14 +217,18 @@ const WorkflowVisualization = ({
                   {/* Time */}
                   <div className="common-text-grey-12">
                     <span>Started: {step.startTime || "00:00:00"}</span>
-                    <span className="dot">  •  </span>
-                    <span>Ended: {step.endTime || "00:00:00"}</span>
+                    {step.endTime && (
+                      <>
+                        <span className="dot">  •  </span>
+                        <span>Ended: {step.endTime || "00:00:00"}</span>
+                      </>
+                    )}
                   </div>
                 </div>
 
                 <div className="workflow-card-right">
                   {/* Duration */}
-                  {step.duration && !isRunning && (
+                  {step.duration && !isRunning && isCompleted && (
                     <div className="workflow-stat">
                       <span className="common-text-grey-11">
                         DURATION

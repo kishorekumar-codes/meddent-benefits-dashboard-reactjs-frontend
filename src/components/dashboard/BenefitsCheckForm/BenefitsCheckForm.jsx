@@ -30,6 +30,85 @@ const BenefitsCheckForm = ({
   };
 
   // Dropdown styles
+  // const selectStyles = {
+  //   // Keep your existing control/input styles unchanged
+  //   control: (base) => ({
+  //     ...base,
+  //     minHeight: "40px",
+  //     height: "40px",
+  //     borderRadius: "8px",
+  //     borderColor: "#cbd5e1",
+  //     boxShadow: "none",
+
+  //     "&:hover": {
+  //       borderColor: "#cbd5e1",
+  //     },
+  //   }),
+
+  //   valueContainer: (base) => ({
+  //     ...base,
+  //     height: "40px",
+  //     padding: "0 12px",
+  //   }),
+
+  //   input: (base) => ({
+  //     ...base,
+  //     margin: 0,
+  //     padding: 0,
+  //     paddingLeft: "20px",
+  //     fontSize: "13px",
+  //   }),
+
+  //   singleValue: (base) => ({
+  //     ...base,
+  //     marginLeft: "20px",
+  //     color: "#1e293b",
+  //     fontSize: "13px",
+  //     fontWeight: 500,
+  //   }),
+
+  //   placeholder: (base) => ({
+  //     ...base,
+  //     marginLeft: "20px",
+  //     color: "#94a3b8",
+  //     fontSize: "13px",
+  //   }),
+
+  //   // DROPDOWN ONLY
+  //   menu: (base) => ({
+  //     ...base,
+  //     zIndex: 1000,
+  //     fontSize: "13px",
+  //     border: "1px solid #7dd3fc",
+  //     borderRadius: "8px",
+  //     overflow: "hidden",
+  //   }),
+
+  //   option: (base, state) => ({
+  //     ...base,
+  //     padding: "10px 12px",
+  //     paddingLeft: "32px",
+
+  //     backgroundColor: state.isSelected
+  //       ? "#e0f2fe"
+  //       : state.isFocused
+  //         ? "#bae6fd"
+  //         : "#ffffff",
+
+  //     color: state.isSelected
+  //       ? "#075985"
+  //       : "#1e293b",
+
+  //     fontWeight: state.isSelected ? 600 : 400,
+
+  //     cursor: "pointer",
+
+  //     "&:active": {
+  //       backgroundColor: "#bae6fd",
+  //     },
+  //   }),
+  // };
+
   const selectStyles = {
     control: (base) => ({
       ...base,
