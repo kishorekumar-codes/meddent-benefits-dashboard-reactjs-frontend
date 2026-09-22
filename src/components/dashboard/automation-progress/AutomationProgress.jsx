@@ -11,7 +11,6 @@ import {
   TOTAL_WORKFLOW_TIME,
   stepColors,
   getWorkflowPercentage,
-  getRemainingWorkflowTime,
 } from "../../../utils/tools";
 
 const AutomationProgress = ({
@@ -31,27 +30,14 @@ const AutomationProgress = ({
 
   /*
    * ==========================================
-   * REMAINING TIME
-   * ==========================================
-   */
-
-  const remainingTime =
-    runId === 0
-      ? TOTAL_WORKFLOW_TIME
-      : getRemainingWorkflowTime(
-          elapsedTime
-        );
-
-  /*
-   * ==========================================
    * EACH STEP PROGRESS
    * ==========================================
    */
 
   let accumulatedTime = 0;
 
-  const stepPercentages =
-    STEP_DURATIONS.map((duration) => {
+  const stepPercentages = STEP_DURATIONS.map(
+    (duration) => {
       const stepStart = accumulatedTime;
 
       const stepEnd =
@@ -77,32 +63,36 @@ const AutomationProgress = ({
        * Running
        */
       const progress =
-        ((elapsedTime - stepStart) /
-          duration) *
+        ((elapsedTime - stepStart) / duration) *
         100;
 
       return Math.min(
         Math.round(progress),
         100
       );
-    });
+    }
+  );
 
   /*
    * ==========================================
-   * FORMAT TIME
+   * ELAPSED TIME COUNTER
    * ==========================================
+   *
+   * Starts at 00:00
+   * Increases with elapsedTime
+   * Ends at 06:56
    */
 
-  const remainingSeconds = Math.ceil(
-    remainingTime / 1000
+  const elapsedSeconds = Math.min(
+    Math.floor(elapsedTime / 1000),
+    Math.floor(TOTAL_WORKFLOW_TIME / 1000)
   );
 
   const minutes = Math.floor(
-    remainingSeconds / 60
+    elapsedSeconds / 60
   );
 
-  const seconds =
-    remainingSeconds % 60;
+  const seconds = elapsedSeconds % 60;
 
   const formattedTime = `${String(
     minutes
@@ -163,7 +153,7 @@ const AutomationProgress = ({
 
             <div className="time-text-group">
               <span className="time-label">
-                EST. REMAINING
+                ELAPSED TIME
               </span>
 
               <span className="time-value">

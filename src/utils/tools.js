@@ -11,11 +11,13 @@ export const TOTAL_WORKFLOW_TIME =
     0
   );
 
-export const TOTAL_STEPS = STEP_DURATIONS.length;
+export const TOTAL_STEPS =
+  STEP_DURATIONS.length;
 
 /*
  * Step colors
  */
+
 export const stepColors = [
   "#60A5FA", // Step 1 - Soft Blue
   "#F472B6", // Step 2 - Soft Pink
@@ -23,10 +25,10 @@ export const stepColors = [
   "#FB923C", // Step 4 - Soft Orange
 ];
 
-
 /*
  * Get current step from elapsed time
  */
+
 export const getCurrentWorkflowStep = (
   elapsedTime
 ) => {
@@ -37,9 +39,12 @@ export const getCurrentWorkflowStep = (
     index < STEP_DURATIONS.length;
     index++
   ) {
-    accumulatedTime += STEP_DURATIONS[index];
+    accumulatedTime +=
+      STEP_DURATIONS[index];
 
-    if (elapsedTime < accumulatedTime) {
+    if (
+      elapsedTime < accumulatedTime
+    ) {
       return index + 1;
     }
   }
@@ -50,6 +55,7 @@ export const getCurrentWorkflowStep = (
 /*
  * Overall percentage
  */
+
 export const getWorkflowPercentage = (
   elapsedTime
 ) => {
@@ -59,28 +65,21 @@ export const getWorkflowPercentage = (
 
   return Math.min(
     Math.round(
-      (elapsedTime / TOTAL_WORKFLOW_TIME) * 100
+      (elapsedTime /
+        TOTAL_WORKFLOW_TIME) *
+        100
     ),
     100
   );
 };
 
 /*
- * Remaining workflow time
- */
-export const getRemainingWorkflowTime = (
-  elapsedTime
-) => {
-  return Math.max(
-    TOTAL_WORKFLOW_TIME - elapsedTime,
-    0
-  );
-};
-
-/*
  * Capitalize first letter
  */
-export const capitalizeFirstLetter = (value) => {
+
+export const capitalizeFirstLetter = (
+  value
+) => {
   if (!value) return "";
 
   return (
