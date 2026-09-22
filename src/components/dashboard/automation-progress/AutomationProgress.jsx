@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Progress } from "antd";
 import {
   SettingOutlined,
@@ -6,153 +5,154 @@ import {
 } from "@ant-design/icons";
 
 import WorkFlowSteps from "../../../data/WorkFlowSteps";
-import { stepColors } from "../../../utils/tools";
 
-const STEP_DURATION = 20; // 20 seconds per step
-const TOTAL_WORKFLOW_TIME = STEP_DURATION * WorkFlowSteps.length; // 80 seconds
+import {
+  STEP_DURATIONS,
+  TOTAL_WORKFLOW_TIME,
+  stepColors,
+  getWorkflowPercentage,
+  getRemainingWorkflowTime,
+} from "../../../utils/tools";
 
-const TOTAL_ESTIMATED_TIME = 5 * 60; // 5 minutes
+const AutomationProgress = ({
+  runId,
+  elapsedTime = 0,
+}) => {
+  /*
+   * ==========================================
+   * OVERALL PROGRESS
+   * ==========================================
+   */
 
-const AutomationProgress = ({ runId }) => {
-  // Overall workflow percentage: 0 -> 100 in 80 seconds
-  const [percent, setPercent] = useState(0);
+  const percent =
+    runId === 0
+      ? 0
+      : getWorkflowPercentage(elapsedTime);
 
-  // Fixed 5-minute countdown
-  const [remainingSeconds, setRemainingSeconds] = useState(TOTAL_ESTIMATED_TIME);
+  /*
+   * ==========================================
+   * REMAINING TIME
+   * ==========================================
+   */
 
-  // Current step progress: 0 -> 100 every 20 seconds
-  const [currentStepPercent, setCurrentStepPercent] =  useState(0);
+  const remainingTime =
+    runId === 0
+      ? TOTAL_WORKFLOW_TIME
+      : getRemainingWorkflowTime(
+          elapsedTime
+        );
 
-  // Current active step
-  const [currentStepIndex, setCurrentStepIndex] =   useState(0);
+  /*
+   * ==========================================
+   * EACH STEP PROGRESS
+   * ==========================================
+   */
 
-  useEffect(() => {
-    // Initial state
-    if (runId === 0) {
-      setPercent(0);
-      setRemainingSeconds(TOTAL_ESTIMATED_TIME);
-      setCurrentStepPercent(0);
-      setCurrentStepIndex(0);
+  let accumulatedTime = 0;
 
-      return;
-    }
+  const stepPercentages =
+    STEP_DURATIONS.map((duration) => {
+      const stepStart = accumulatedTime;
 
-    // Reset when a new run starts
-    setPercent(0);
-    setRemainingSeconds(TOTAL_ESTIMATED_TIME);
-    setCurrentStepPercent(0);
-    setCurrentStepIndex(0);
+      const stepEnd =
+        accumulatedTime + duration;
 
-    let elapsedSeconds = 0;
+      accumulatedTime = stepEnd;
 
-    const timer = setInterval(() => {
-      elapsedSeconds += 1;
-
-      const workflowPercent = Math.min(
-        Math.round(
-          (elapsedSeconds / TOTAL_WORKFLOW_TIME) * 100
-        ),
-        100
-      );
-
-      setPercent(workflowPercent);
-
-      const stepIndex = Math.min(
-        Math.floor(
-          (elapsedSeconds - 1) / STEP_DURATION
-        ),
-        WorkFlowSteps.length - 1
-      );
-
-      setCurrentStepIndex(stepIndex);
-
-      const secondsIntoStep = ((elapsedSeconds - 1) % STEP_DURATION) + 1;
-
-      const stepPercent = Math.min(
-        Math.round(
-          (secondsIntoStep / STEP_DURATION) * 100
-        ),
-        100
-      );
-
-      setCurrentStepPercent(stepPercent);
-
-      const remaining = Math.max(
-        TOTAL_ESTIMATED_TIME - elapsedSeconds,
-        0
-      );
-
-      setRemainingSeconds(remaining);
-
-      if (elapsedSeconds >= TOTAL_WORKFLOW_TIME) {
-        clearInterval(timer);
-
-        setPercent(100);
-        setCurrentStepPercent(100);
+      /*
+       * Waiting
+       */
+      if (elapsedTime <= stepStart) {
+        return 0;
       }
-    }, 1000);
 
-    return () => {
-      clearInterval(timer);
-    };
-  }, [runId]);
+      /*
+       * Completed
+       */
+      if (elapsedTime >= stepEnd) {
+        return 100;
+      }
+
+      /*
+       * Running
+       */
+      const progress =
+        ((elapsedTime - stepStart) /
+          duration) *
+        100;
+
+      return Math.min(
+        Math.round(progress),
+        100
+      );
+    });
+
+  /*
+   * ==========================================
+   * FORMAT TIME
+   * ==========================================
+   */
+
+  const remainingSeconds = Math.ceil(
+    remainingTime / 1000
+  );
 
   const minutes = Math.floor(
     remainingSeconds / 60
   );
 
-  const seconds = remainingSeconds % 60;
+  const seconds =
+    remainingSeconds % 60;
 
-  const formattedTime = `${String(minutes).padStart(
-    2,
-    "0"
-  )}:${String(seconds).padStart(2, "0")}`;
+  const formattedTime = `${String(
+    minutes
+  ).padStart(2, "0")}:${String(
+    seconds
+  ).padStart(2, "0")}`;
 
   return (
     <div className="automation-card card">
+      {/* Icon */}
       <div className="icon-badge">
         <SettingOutlined className="gear-icon" />
       </div>
 
       <div className="progress-content">
+        {/* Title */}
         <h3 className="common-title-primary progress-title">
           Agentic Automation Progress
         </h3>
 
+        {/* Progress */}
         <div className="workflow-progress">
-          {WorkFlowSteps.map((step, index) => {
-
-            let stepPercent = 0;
-
-            if (index < currentStepIndex) {
-              stepPercent = 100;
-            } else if (index === currentStepIndex) {
-              stepPercent = currentStepPercent;
-            } else {
-              stepPercent = 0;
-            }
-
-            if (runId === 0) {
-              stepPercent = 0;
-            }
-
-            return (
+          {WorkFlowSteps.map(
+            (step, index) => (
               <div
                 key={step.id}
                 className="workflow-progress-segment"
+                style={{
+                  flex: `${STEP_DURATIONS[index]} 1 0`,
+                }}
               >
                 <Progress
-                  percent={stepPercent}
+                  percent={
+                    runId === 0
+                      ? 0
+                      : stepPercentages[index]
+                  }
                   showInfo={false}
-                  strokeColor={stepColors[index]}
+                  strokeColor={
+                    stepColors[index]
+                  }
                   railColor="#e2e8f0"
                   size={{ height: 8 }}
                 />
               </div>
-            );
-          })}
+            )
+          )}
         </div>
 
+        {/* Stats */}
         <div className="progress-stats">
           <span className="stat-value-22">
             {percent}%

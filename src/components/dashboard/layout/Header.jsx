@@ -74,7 +74,7 @@ const Header = () => {
 
         <div>
           <h1 className="brand-title">
-            MEDDENT BENEFITS ACCELERATOR
+            MEDDENT BENEFITS ACCELERATOR (POC)
           </h1>
         </div>
       </div>

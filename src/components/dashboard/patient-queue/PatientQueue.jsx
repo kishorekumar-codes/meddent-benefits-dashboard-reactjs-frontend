@@ -11,50 +11,60 @@ export default function PatientQueue({
   currentStep = 0,
   processStatus = "waiting",
 }) {
-  // Generate numeric ID for the newly running patient
-  const getNextPatientId = () => {
-    const numericIds = QueueData.map((item) =>
-      Number(item.id)
-    ).filter((id) => !Number.isNaN(id));
+  /*
+   * ==========================================
+   * UPDATE EXISTING PATIENT
+   * ==========================================
+   */
 
-    const nextId =
-      numericIds.length > 0
-        ? Math.max(...numericIds) + 1
-        : 1;
+  const queuePatients = QueueData.map(
+    (item) => {
+      /*
+       * Match selected patient
+       * with QueueData
+       */
+      const isRunningPatient =
+        runningPatient &&
+        String(item.id) ===
+          String(runningPatient.value);
 
-    return String(nextId).padStart(2, "0");
-  };
+      /*
+       * Not selected patient
+       * → keep original data
+       */
+      if (!isRunningPatient) {
+        return item;
+      }
 
-  const activePatient = runningPatient
-    ? {
-      id: getNextPatientId(),
-      patientValue: runningPatient.value,
-      name: runningPatient.label,
-      avatar:
-        runningPatient.avatar ||
-        "https://i.pravatar.cc/100?img=12",
-      status:
-        processStatus === "completed"
+      /*
+       * Selected patient
+       * → dynamically update
+       */
+
+      const isCompleted =
+        processStatus === "completed";
+
+      return {
+        ...item,
+
+        status: isCompleted
           ? "Completed"
           : "Running",
-      statusType:
-        processStatus === "completed"
+
+        statusType: isCompleted
           ? "completed"
           : "running",
-      step:
-        processStatus === "completed"
-          ? "Step 4"
-          : `Step ${currentStep}`,
-      updated: "Just now",
-    }
-    : null;
 
-  const queuePatients = activePatient
-    ? [
-      activePatient,
-      ...QueueData,
-    ]
-    : QueueData;
+        step: isCompleted
+          ? `Step ${TOTAL_STEPS}`
+          : currentStep > 0
+            ? `Step ${currentStep}`
+            : "-",
+
+        updated: "Just now",
+      };
+    }
+  );
 
   return (
     <div className="card">
@@ -69,18 +79,10 @@ export default function PatientQueue({
               Patient Process Queue
             </h3>
 
-            {/* {showStepCounter && ( */}
             <span className="queue-step-counter">
-              {currentStep || "0"} / {TOTAL_STEPS}
+              {currentStep || "0"} /{" "}
+              {TOTAL_STEPS}
             </span>
-            {/* )} */}
-
-            {/* {runningPatient &&
-              processStatus === "completed" && (
-                <span className="queue-step-counter">
-                  4 / 4
-                </span>
-              )} */}
           </div>
 
           <a
@@ -104,11 +106,18 @@ export default function PatientQueue({
         <table className="queue-table">
           <thead>
             <tr>
-              <th className="th-sno">#</th>
+              <th className="th-sno">
+                #
+              </th>
+
               <th>Patient</th>
+
               <th>Current Step</th>
+
               <th>Status</th>
+
               <th>Updated</th>
+
               <th className="th-action">
                 Action
               </th>
@@ -116,104 +125,60 @@ export default function PatientQueue({
           </thead>
 
           <tbody>
-            {queuePatients.map((item) => {
-              /*
-               * Check whether this is the
-               * currently running patient.
-               */
-              const isRunningPatient =
-                activePatient &&
-                item.id === activePatient.id;
+            {queuePatients.map((item) => (
+              <tr key={item.id}>
+                {/* ID */}
+                <td className="pid">
+                  {item.id}
+                </td>
 
-              /*
-               * Dynamic step
-               */
-              const displayStep =
-                isRunningPatient
-                  ? processStatus === "completed"
-                    ? "Step 4"
-                    : currentStep > 0
-                      ? `Step ${currentStep}`
-                      : "-"
-                  : item.step;
-
-              /*
-               * Dynamic status
-               */
-              const displayStatus =
-                isRunningPatient
-                  ? processStatus === "completed"
-                    ? "Completed"
-                    : "Running"
-                  : item.status;
-
-              /*
-               * Dynamic status type
-               */
-              const displayStatusType =
-                isRunningPatient
-                  ? processStatus === "completed"
-                    ? "completed"
-                    : "running"
-                  : item.statusType;
-
-              return (
-                <tr key={item.id}>
-                  {/* # / ID */}
-                  <td className="pid">
-                    {item.id}
-                  </td>
-
-                  {/* Patient */}
-                  <td>
-                    <div className="patient-cell">
-                      <img
-                        src={item.avatar}
-                        alt={item.name}
-                        className="p-avatar"
-                      />
-
-                      <span className="p-name">
-                        {item.name}
-                      </span>
-                    </div>
-                  </td>
-
-                  {/* Current Step */}
-                  <td className="step-cell">
-                    <span
-                      className={`step-dot ${displayStatusType}`}
-                    ></span>
-
-                    {displayStep}
-                  </td>
-
-                  {/* Status */}
-                  <td>
-                    <span
-                      className={`status-pill ${displayStatusType}`}
-                    >
-                      {displayStatus}
-                    </span>
-                  </td>
-
-                  {/* Updated */}
-                  <td className="updated-cell">
-                    {isRunningPatient
-                      ? "Just now"
-                      : item.updated}
-                  </td>
-
-                  {/* Action */}
-                  <td className="action-cell">
-                    <MoreVertical
-                      size={14}
-                      className="action-icon"
+                {/* Patient */}
+                <td>
+                  <div className="patient-cell">
+                    <img
+                      src={item.avatar}
+                      alt={item.name}
+                      className="p-avatar"
                     />
-                  </td>
-                </tr>
-              );
-            })}
+
+                    <span className="p-name">
+                      {item.name}
+                    </span>
+                  </div>
+                </td>
+
+                {/* Current Step */}
+                <td className="step-cell">
+                  <span
+                    className={`step-dot ${item.statusType}`}
+                  />
+
+                  {item.step}
+                </td>
+
+                {/* Status */}
+                <td>
+                  <span
+                    className={`status-pill ${item.statusType}`}
+                  >
+                    {item.status}
+                  </span>
+                </td>
+
+                {/* Updated */}
+                <td className="updated-cell">
+                  {item.updated}
+                </td>
+
+                {/* Action */}
+                <td className="action-cell">
+                  <MoreVertical
+                    size={14}
+                    className="action-icon"
+                  />
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

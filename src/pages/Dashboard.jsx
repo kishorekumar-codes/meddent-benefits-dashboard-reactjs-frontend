@@ -7,100 +7,103 @@ import WorkflowControls from "../components/dashboard/workflow-controls/Workflow
 import PatientQueue from "../components/dashboard/patient-queue/PatientQueue";
 import Footer from "../components/dashboard/layout/Footer";
 import BenefitsCheckForm from "../components/dashboard/BenefitsCheckForm/BenefitsCheckForm";
-import { STEP_DURATION, TOTAL_STEPS } from "../utils/tools";
 
+import {
+  TOTAL_WORKFLOW_TIME,
+  getCurrentWorkflowStep,
+} from "../utils/tools";
 
 export default function Dashboard() {
-  const [selectedPatient, setSelectedPatient] = useState(null);
+  const [selectedPatient, setSelectedPatient] =
+    useState(null);
 
   const [runId, setRunId] = useState(0);
 
-  // 0 = not started
-  // 1 = Step 1
-  // 2 = Step 2
-  // 3 = Step 3
-  // 4 = Step 4
+  const [elapsedTime, setElapsedTime] = useState(0);
+
   const [currentStep, setCurrentStep] = useState(0);
 
-  // waiting | running | completed
-  const [processStatus, setProcessStatus] = useState("waiting");
+  const [processStatus, setProcessStatus] =
+    useState("waiting");
+
+  /*
+   * ==========================================
+   * RUN BENEFITS CHECK
+   * ==========================================
+   */
 
   const handleRunBenefitsCheck = (patient) => {
     if (!patient) {
-      console.log("Please select or enter a patient.");
+      console.log(
+        "Please select or enter a patient."
+      );
       return;
     }
 
-    console.log("Running Benefits Check for:", patient);
+    console.log(
+      "Running Benefits Check for:",
+      patient
+    );
 
     setSelectedPatient(patient);
 
-    // Start a new run
+    // Start new run
     setRunId((prev) => prev + 1);
 
-    // Start from Step 1
+    // Reset workflow
+    setElapsedTime(0);
     setCurrentStep(1);
     setProcessStatus("running");
   };
 
   /*
    * ==========================================
-   * WORKFLOW STEP CONTROLLER
+   * SINGLE WORKFLOW TIMER
    * ==========================================
-   *
-   * Each step = 20 seconds
-   *
-   * Step 1 → 20s
-   * Step 2 → 20s
-   * Step 3 → 20s
-   * Step 4 → 20s
-   *
-   * Total = 80 seconds
    */
+
   useEffect(() => {
     if (runId === 0 || !selectedPatient) {
       return;
     }
 
+    const startTime = Date.now();
+
     const timer = setInterval(() => {
-      setCurrentStep((prevStep) => {
-        if (prevStep >= TOTAL_STEPS) {
-          return prevStep;
-        }
+      const elapsed =
+        Date.now() - startTime;
 
-        const nextStep = prevStep + 1;
+      const actualElapsed = Math.min(
+        elapsed,
+        TOTAL_WORKFLOW_TIME
+      );
 
-        if (nextStep > TOTAL_STEPS) {
-          setProcessStatus("completed");
-        }
+      setElapsedTime(actualElapsed);
 
-        return nextStep;
-      });
-    }, STEP_DURATION);
+      const step =
+        getCurrentWorkflowStep(
+          actualElapsed
+        );
+
+      setCurrentStep(step);
+
+      /*
+       * Workflow completed
+       */
+      if (
+        actualElapsed >=
+        TOTAL_WORKFLOW_TIME
+      ) {
+        setProcessStatus("completed");
+
+        clearInterval(timer);
+      }
+    }, 250);
 
     return () => {
       clearInterval(timer);
     };
   }, [runId, selectedPatient]);
-
-  /*
-   * When Step 4 finishes, mark entire patient process
-   * as completed.
-   */
-  useEffect(() => {
-    if (
-      runId > 0 &&
-      currentStep === TOTAL_STEPS
-    ) {
-      const completionTimer = setTimeout(() => {
-        setProcessStatus("completed");
-      }, STEP_DURATION);
-
-      return () => {
-        clearTimeout(completionTimer);
-      };
-    }
-  }, [currentStep, runId]);
 
   return (
     <div className="dashboard-container">
@@ -109,11 +112,16 @@ export default function Dashboard() {
       <main className="dashboard-content">
         {/* Benefits Check */}
         <section className="benefits-card">
-          <AutomationProgress runId={runId} />
+          <AutomationProgress
+            runId={runId}
+            elapsedTime={elapsedTime}
+          />
 
           <BenefitsCheckForm
             selectedPatient={selectedPatient}
-            onRunBenefitsCheck={handleRunBenefitsCheck}
+            onRunBenefitsCheck={
+              handleRunBenefitsCheck
+            }
           />
         </section>
 
@@ -121,8 +129,11 @@ export default function Dashboard() {
         <section className="grid-main">
           <div className="grid-left">
             <WorkflowVisualization
-              patientName={selectedPatient?.label}
+              patientName={
+                selectedPatient?.label
+              }
               runId={runId}
+              elapsedTime={elapsedTime}
               processStatus={processStatus}
             />
           </div>
